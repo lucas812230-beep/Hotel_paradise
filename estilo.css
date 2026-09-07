@@ -126,44 +126,38 @@ body{
    gap: 40px;
    align-items: start;
 }
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+   .header .container{
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      padding: 12px 20px;
+   }
+   .logo h1{ font-size: 1.4rem; }
+   .nav-list{ flex-direction: column; gap: 8px; }
+   .nav-list a{ font-size: 1rem; }
 
-/* Garantir que o título da seção ocupe as duas colunas */
-.services .container .section-title,
-.contact .container .section-title{
-   grid-column: 1 / -1;
+   .hero{ height: 60vh; padding: 16px; }
+   .hero-title{ font-size: 2rem; }
+   .hero-subtitle{ font-size: 1rem; }
+   .btn-primary{ padding: 10px 16px; font-size: 1rem; }
+
+   /* Booking page: stack the grid into a single column on mobile */
+   .booking-grid{ grid-template-columns: 1fr; }
+   .booking-container{ padding: 12px; margin: 60px auto; }
+   .rooms-grid{ padding: 12px; }
+   .room-option img{ width: 80px; height: 56px; }
+
+   .footer .container{ flex-direction: column; align-items: center; text-align: center; padding: 0 12px; }
 }
 
-.services-grid{
-   background: transparent; /* removido fundo preto das caixas */
-   color: inherit;
-   padding: 0;
-   border-radius: 0;
-   box-shadow: none;
-   max-width: none;
+@media (max-width: 480px){
+   .hero-title{ font-size: 1.6rem; }
+   .logo h1{ font-size: 1.1rem; }
+   .nav-list a{ font-size: 0.95rem; }
+   .whatsapp-float{ width: 48px; height: 48px; font-size: 20px; right: 14px; bottom: 14px; }
 }
-
-.services-grid .service-item h3{
-   color: inherit;
-}
-
-.services-grid .service-item p{
-   color: inherit;
-}
-
-.services-grid .service-item h3{
-   color: #fff;
-   margin-bottom: 6px;
-}
-
-.services-grid .service-item p{
-   color: #d0d0d0;
-}
-
-.contact-info{
-   background: transparent; /* removido fundo preto da caixa de contato */
-   color: inherit;
-   padding: 0;
-   border-radius: 0;
    box-shadow: none;
 }
 
