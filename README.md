@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Hotel Paradise
 
@@ -57,3 +58,6 @@ Se quiser que eu:
 
 ---
 Arquivo atualizado para facilitar publicação e uso.
+=======
+# Hotel_paradise
+>>>>>>> origin/main
