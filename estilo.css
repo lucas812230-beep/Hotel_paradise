@@ -158,26 +158,6 @@ body{
    .nav-list a{ font-size: 0.95rem; }
    .whatsapp-float{ width: 48px; height: 48px; font-size: 20px; right: 14px; bottom: 14px; }
 }
-
-/* Center contact section content */
-#contact .container{
-   text-align: center;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-}
-#contact .contact-info{
-   max-width: 720px;
-   width: 100%;
-}
-
-/* Reserve CTA styles */
-.reserve-cta{padding:40px 0;background:transparent}
-.reserve-box{background:#fff;padding:18px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-.reserve-box .section-title{margin-bottom:8px}
-
-/* Ensure contact title is centered */
-#contact .section-title{text-align:center}
    box-shadow: none;
 }
 
