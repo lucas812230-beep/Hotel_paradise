@@ -6,6 +6,12 @@
   <title>Reservas - Hotel Paradise</title>
   <link rel="stylesheet" href="estilo.css">
   <style>
+    /* Forçar layout horizontal (deitado) em telas pequenas — override local */
+    @media (max-width: 480px){
+      .booking-grid{display:flex !important; flex-direction:row !important; gap:16px !important; overflow-x:auto !important; -webkit-overflow-scrolling: touch !important; padding:12px 8px !important}
+      .booking-grid > section, .booking-grid > aside{flex: 0 0 320px !important; min-width: 280px !important}
+    }
+
     .booking-container{max-width:1000px;margin:80px auto;padding:20px}
     .booking-grid{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start}
     .card{background:#fff;padding:18px;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,0.06)}
