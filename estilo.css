@@ -158,6 +158,13 @@ body{
    .nav-list a{ font-size: 0.95rem; }
    .whatsapp-float{ width: 48px; height: 48px; font-size: 20px; right: 14px; bottom: 14px; }
 }
+/* Forçar menu horizontal em telas muito pequenas */
+@media (max-width: 480px){
+   .header .container{ flex-direction: column !important; }
+   .nav-list{ display:flex !important; flex-direction:row !important; gap:12px !important; justify-content:center !important; align-items:center !important; margin-top:8px !important; }
+   .nav-list li{ list-style:none !important; }
+   .nav-list a{ padding:8px 6px !important; }
+}
 /* On very small screens, make booking area horizontal (deitado) with scroll */
 @media (max-width: 480px) {
    .booking-grid{ display:flex !important; flex-direction:row; gap:16px; overflow-x:auto; padding:12px 8px; -webkit-overflow-scrolling: touch; }
