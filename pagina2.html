@@ -123,7 +123,7 @@
       selNights.textContent = nights;
       selPrice.textContent = price;
       selTotal.textContent = total.toFixed(2);
-      nightsInfo.textContent = nights>0? nights+ (nights===1? ' noite':''+ ' noites') : '';
+      nightsInfo.textContent = nights > 0 ? nights + (nights === 1 ? ' noite' : ' noites') : '';
     }
 
     checkin.addEventListener('change', updateSummary);
@@ -140,6 +140,9 @@
       }
       alert('Reserva confirmada:\n' + selRoom.textContent + '\nNoites: ' + nights + '\nTotal: R$ ' + selTotal.textContent);
     });
+
+    // Atualiza o resumo ao carregar a página
+    updateSummary();
   </script>
 </body>
 </html>
