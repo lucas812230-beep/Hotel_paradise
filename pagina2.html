@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Reservas - Hotel Paradise</title>
+  <link rel="stylesheet" href="estilo.css">
+  <style>
+    .booking-container{max-width:1000px;margin:80px auto;padding:20px}
+    .booking-grid{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start}
+    .card{background:#fff;padding:18px;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,0.06)}
+    .room-option{display:flex;gap:12px;align-items:center;padding:10px;border-radius:6px;border:1px solid #eee;margin-bottom:10px}
+    .room-option img{width:96px;height:64px;object-fit:cover;border-radius:6px}
+    .room-info h4{margin:0 0 6px 0}
+    .btn-primary{display:inline-block}
+    .summary{background:#fafafa;padding:12px;border-radius:8px}
+    .total{font-weight:800;font-size:1.2rem;color:#d4af37}
+    label{display:block;margin:8px 0 4px}
+    input[type=date], select, input[type=number]{width:100%;padding:8px;border:1px solid #ddd;border-radius:4px}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo"><h1>Hotel Paradise</h1></div>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html#home">Início</a></li>
+          <li><a href="index.html#about">Sobre</a></li>
+          <li><a href="index.html#rooms">Quartos</a></li>
+          <li><a href="index.html#contact">Contato</a></li>
+          <li><a href="pagina2.html">Reservas</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="booking-container">
+    <h2 class="section-title">Reserve seu quarto</h2>
+    <div class="booking-grid">
+      <section>
+        <form id="booking-form" class="card">
+          <label for="checkin">Check-in</label>
+          <input id="checkin" name="checkin" type="date" required>
+
+          <label for="checkout">Check-out</label>
+          <input id="checkout" name="checkout" type="date" required>
+
+          <label for="room">Escolha o quarto</label>
+          <select id="room" name="room" required>
+            <option value="standard" data-price="280">Quarto Standard — R$ 280/noite</option>
+            <option value="deluxe" data-price="480">Suíte Deluxe — R$ 480/noite</option>
+            <option value="presidential" data-price="850">Suíte Presidential — R$ 850/noite</option>
+          </select>
+
+          <label for="guests">Hóspedes</label>
+          <input id="guests" name="guests" type="number" min="1" max="6" value="1">
+
+          <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+            <button type="submit" class="btn-primary">Confirmar reserva</button>
+            <div id="nights-info" style="margin-left:12px;color:#666"></div>
+          </div>
+        </form>
+
+        <div class="card" style="margin-top:18px">
+          <h3>Descrição</h3>
+          <p>Escolha as datas e o tipo de quarto. O total será calculado automaticamente.</p>
+        </div>
+      </section>
+
+      <aside>
+        <div class="summary card">
+          <h4>Resumo da reserva</h4>
+          <p>Quarto: <span id="sel-room">Quarto Standard</span></p>
+          <p>Noites: <span id="sel-nights">0</span></p>
+          <p>Preço por noite: R$ <span id="sel-price">280</span></p>
+          <p class="total">Total: R$ <span id="sel-total">0</span></p>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h4>Opções de quartos</h4>
+          <div class="room-option">
+            <img src="https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Standard">
+            <div class="room-info"><h4>Quarto Standard</h4><div>R$ 280/noite</div></div>
+          </div>
+          <div class="room-option">
+            <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Deluxe">
+            <div class="room-info"><h4>Suíte Deluxe</h4><div>R$ 480/noite</div></div>
+          </div>
+          <div class="room-option">
+            <img src="https://images.pexels.com/photos/271619/pexels-photo-271619.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Presidential">
+            <div class="room-info"><h4>Suíte Presidential</h4><div>R$ 850/noite</div></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const checkin = document.getElementById('checkin');
+    const checkout = document.getElementById('checkout');
+    const room = document.getElementById('room');
+    const guests = document.getElementById('guests');
+    const selRoom = document.getElementById('sel-room');
+    const selNights = document.getElementById('sel-nights');
+    const selPrice = document.getElementById('sel-price');
+    const selTotal = document.getElementById('sel-total');
+    const nightsInfo = document.getElementById('nights-info');
+
+    function daysBetween(a,b){
+      const da = new Date(a);
+      const db = new Date(b);
+      if(isNaN(da)||isNaN(db)) return 0;
+      const diff = (db - da) / (1000*60*60*24);
+      return diff>0?diff:0;
+    }
+
+    function updateSummary(){
+      const nights = daysBetween(checkin.value, checkout.value);
+      const price = parseFloat(room.selectedOptions[0].dataset.price || 0);
+      const total = nights * price;
+      selRoom.textContent = room.selectedOptions[0].textContent.split(' — ')[0];
+      selNights.textContent = nights;
+      selPrice.textContent = price;
+      selTotal.textContent = total.toFixed(2);
+      nightsInfo.textContent = nights>0? nights+ (nights===1? ' noite':''+ ' noites') : '';
+    }
+
+    checkin.addEventListener('change', updateSummary);
+    checkout.addEventListener('change', updateSummary);
+    room.addEventListener('change', updateSummary);
+
+    document.getElementById('booking-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      updateSummary();
+      const nights = selNights.textContent;
+      if(!nights || nights==='0'){
+        alert('Escolha datas válidas (check-out após check-in).');
+        return;
+      }
+      alert('Reserva confirmada:\n' + selRoom.textContent + '\nNoites: ' + nights + '\nTotal: R$ ' + selTotal.textContent);
+    });
+  </script>
+</body>
+</html>
