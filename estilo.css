@@ -160,8 +160,8 @@ body{
 }
 /* On very small screens, make booking area horizontal (deitado) with scroll */
 @media (max-width: 480px) {
-   .booking-grid{ display:flex; gap:16px; overflow-x:auto; padding:12px 8px; -webkit-overflow-scrolling: touch; }
-   .booking-grid > section, .booking-grid > aside{ flex: 0 0 320px; min-width: 280px; }
+   .booking-grid{ display:flex !important; flex-direction:row; gap:16px; overflow-x:auto; padding:12px 8px; -webkit-overflow-scrolling: touch; }
+   .booking-grid > section, .booking-grid > aside{ flex: 0 0 320px !important; min-width: 280px !important; }
    .booking-grid .card{ margin:0 6px; }
    .booking-grid::-webkit-scrollbar{ height:8px }
    .booking-grid::-webkit-scrollbar-thumb{ background: rgba(0,0,0,0.08); border-radius:4px }
